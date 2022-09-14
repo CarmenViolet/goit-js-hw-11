@@ -56,6 +56,6 @@ async function onButtonClick() {
 };
  
 function renderingMarkup(array) {
-    galleryEl.insertAdjacentHTML('afterbegin', createGalleryMarkup(array));
+    galleryEl.insertAdjacentHTML('beforeend', createGalleryMarkup(array));
     lightbox.refresh();
 }
