@@ -28,20 +28,18 @@ async function searchInformation(event) {
         galleryEl.innerHTML = '';
         if(galleryItem.length === 0) {
             Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.");
+          }  else if (!query) {
+                Notiflix.Notify.info('Please, enter key word for search!');
+                return;
         } else {
             Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
             renderingMarkup(response.hits);
-           
         } 
+   
     } catch {
 
     }
 
-    // if (!query) {
-    //   Notiflix.Notify.info('Please, enter key word for search!');
-    //   return;
-    // }
-   
 }
 
 async function onButtonClick() {

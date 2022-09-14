@@ -12,7 +12,7 @@ export class searchQuery {
    static per_page = 40;
 
    static async searchPictures(query = '') {
-    if(query) searchQuery.query = query;
+    if(query.trim()) searchQuery.query = query;
 
     
    const config = {
