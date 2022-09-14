@@ -17,25 +17,35 @@ buttonEl.addEventListener('click', onButtonClick);
 async function searchInformation(event) {
     event.preventDefault();
     buttonEl.hidden = false;
-    galleryEl.innerHTML = '';
     searchQuery.page = 1;
 
     const query = event.target.elements.searchQuery.value.trim();
+    
+    const response = await searchQuery.searchPictures(query);
+    const galleryItem = response.hits;
 
-    if (!query) {
-      Notiflix.Notify.info('Please, enter key word for search!');
-      return;
+    try {
+        galleryEl.innerHTML = '';
+        if(galleryItem.length === 0) {
+            Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.");
+        } else {
+            Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
+        } renderingMarkup(response.hits);
+    } catch {
+        
     }
 
-    const response = await searchQuery.searchPictures(query);
-    renderingMarkup(response.hits);
+    // if (!query) {
+    //   Notiflix.Notify.info('Please, enter key word for search!');
+    //   return;
+    // }
    
 }
 
 async function onButtonClick() {
     searchQuery.page += 1;
 
-    if(searchQuery.page === searchQuery.totalHits) {
+    if(searchQuery.page === 13) {
         buttonEl.hidden = true;
         Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
     }
