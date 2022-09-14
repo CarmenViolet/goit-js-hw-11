@@ -9,7 +9,7 @@ const formEl = document.querySelector('.js-search-form');
 const galleryEl = document.querySelector('.js-gallery')
 const buttonEl = document.querySelector('.js-load-more');
 
-const lightbox = new SimpleLightbox('.gallery a', { });
+const lightbox = new SimpleLightbox('.gallery a', {CaptionDelay: 250, captions: true, captionsData: 'alt'});
 
 formEl.addEventListener('submit', searchInformation);
 buttonEl.addEventListener('click', onButtonClick);
@@ -47,7 +47,7 @@ async function searchInformation(event) {
 async function onButtonClick() {
     searchQuery.page += 1;
 
-    if(searchQuery.page === 13) {
+    if(searchQuery.page === searchQuery.maxPage) {
         buttonEl.hidden = true;
         Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
     }

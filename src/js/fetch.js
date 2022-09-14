@@ -10,6 +10,7 @@ export class searchQuery {
    static orientation ='horizontal';
    static safesearch = 'true';
    static per_page = 40;
+   static maxPage = 13;
 
    static async searchPictures(query = '') {
     if(query.trim()) searchQuery.query = query;
@@ -24,6 +25,7 @@ export class searchQuery {
             safesearch: searchQuery.safesearch,
             per_page: searchQuery.per_page,
             page: searchQuery.page,
+            maxPage: searchQuery.maxPage,
         }
        }
 

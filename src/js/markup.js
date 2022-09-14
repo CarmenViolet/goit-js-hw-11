@@ -1,6 +1,6 @@
 export function createGalleryMarkup(array) {
     return array.reduce((acc, {largeImageURL, webformatURL, tags, likes, views, comments, downloads}) => acc + `
-    <a href="${largeImageURL}">
+    <a href="${largeImageURL}" class="gallery__link">
     <div class="photo-card">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">

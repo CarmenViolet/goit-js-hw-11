@@ -1,2 +1,43 @@
 @import './common';
 @import './example';
+
+a {
+    display: block;
+    text-decoration: none;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery__link {
+    width: 350px;
+    height: 350px;
+}
+
+img {
+    width: 350px;
+   
+    height: fit-content;
+}
+
+.js-search-form {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.info-item {
+    color: black;
+    margin-top: 0;
+}
+
+.js-load-more {
+   margin: 0 auto;
+}
+
+input {
+    text-align: center;
+}
