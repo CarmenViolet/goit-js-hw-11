@@ -1,6 +1,6 @@
 export function createGalleryMarkup(array) {
     return array.reduce((acc, {largeImageURL, webformatURL, tags, likes, views, comments, downloads}) => acc + `
-    <a href="${largeImageURL}"></a>
+    <a href="${largeImageURL}">
     <div class="photo-card">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
@@ -17,5 +17,6 @@ export function createGalleryMarkup(array) {
       <b>Downloads</b> ${downloads}
     </p>
   </div>
-</div>`, " ");
+</div>
+</a>`, " ");
 }
