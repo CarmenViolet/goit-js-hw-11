@@ -9,7 +9,7 @@ const formEl = document.querySelector('.js-search-form');
 const galleryEl = document.querySelector('.js-gallery')
 const buttonEl = document.querySelector('.js-load-more');
 
-var lightbox = new SimpleLightbox('.gallery a', { });
+const lightbox = new SimpleLightbox('.gallery a', { });
 
 formEl.addEventListener('submit', searchInformation);
 buttonEl.addEventListener('click', onButtonClick);
@@ -28,7 +28,7 @@ async function searchInformation(event) {
     }
 
     const response = await searchQuery.searchPictures(query);
-    renderingMarkup(response);
+    renderingMarkup(response.hits);
    
 }
 
@@ -41,7 +41,7 @@ async function onButtonClick() {
     }
 
     const response = await searchQuery.searchPictures();
-    renderingMarkup(response);
+    renderingMarkup(response.hits);
   
 };
  
