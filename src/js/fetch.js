@@ -6,19 +6,19 @@ export class searchQuery {
    static page = 1;
    static image_type = "photo";
    static key = '29904861-3a00656c8c471d49ecd8a16bd';
-   static q = '';
+   static query = '';
    static orientation ='horizontal';
    static safesearch = 'true';
    static per_page = 40;
 
-   static async searchPictures(query) {
-    if(query.trim()) searchQuery.q = query;
+   static async searchPictures(query = '') {
+    if(query) searchQuery.query = query;
 
     
    const config = {
         params: {
             key: searchQuery.key,
-            q: searchQuery.q,
+            q: searchQuery.query,
             image_type: searchQuery.image_type,
             orientation: searchQuery.orientation,
             safesearch: searchQuery.safesearch,

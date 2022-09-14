@@ -30,9 +30,11 @@ async function searchInformation(event) {
             Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.");
         } else {
             Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
-        } renderingMarkup(response.hits);
+            renderingMarkup(response.hits);
+           
+        } 
     } catch {
-        
+
     }
 
     // if (!query) {
