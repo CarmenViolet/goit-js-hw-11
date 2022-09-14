@@ -16,26 +16,28 @@ buttonEl.addEventListener('click', onButtonClick);
 
 async function searchInformation(event) {
     event.preventDefault();
-    buttonEl.hidden = false;
+    buttonEl.classList.add('visually-hidden');
     searchQuery.page = 1;
 
     const query = event.target.elements.searchQuery.value.trim();
     
     const response = await searchQuery.searchPictures(query);
+    console.log(response);
     const galleryItem = response.hits;
 
     try {
         galleryEl.innerHTML = '';
         if(galleryItem.length === 0) {
             Notiflix.Notify.info("Sorry, there are no images matching your search query. Please try again.");
-            buttonEl.hidden = true;
+           
           }  else if (!query) {
                 Notiflix.Notify.info('Please, enter key word for search!');
-                buttonEl.hidden = true;
+              
                 return;
         } else {
             Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
             renderingMarkup(response.hits);
+            buttonEl.classList.remove('visually-hidden');
         } 
    
     } catch (error) {
@@ -44,17 +46,17 @@ async function searchInformation(event) {
 
 }
 
+
 async function onButtonClick() {
     searchQuery.page += 1;
 
-    if(searchQuery.page === searchQuery.maxPage) {
-        buttonEl.hidden = true;
+    const response = await searchQuery.searchPictures();
+    if (searchQuery.page > response.totalHits / searchQuery.per_page) {
+        buttonEl.classList.add('visually-hidden');
         Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.");
     }
-
-    const response = await searchQuery.searchPictures();
     renderingMarkup(response.hits);
-  
+
     const { height: cardHeight } = document
   .querySelector(".gallery")
   .firstElementChild.getBoundingClientRect();
